@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Programming — A Complete Beginner's Guide</title>
+<style>
+  :root{
+    --navy:#1E3A5F;
+    --blue:#3B82F6;
+    --skyblue:#38BDF8;
+    --slate:#64748B;
+    --bg:#F8FAFC;
+    --card:#FFFFFF;
+    --code-bg:#0F172A;
+    --code-panel:#F1F5F9;
+    --amber-bg:#FFFBEB;
+    --amber-border:#F59E0B;
+    --red-bg:#FEF2F2;
+    --red-border:#EF4444;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Calibri,Arial,sans-serif;
+    background:var(--bg);
+    color:#1E293B;
+    line-height:1.65;
+  }
+  a{color:var(--blue);}
+
+  /* ---- Header / Hero ---- */
+  header.hero{
+    background:linear-gradient(135deg,var(--navy) 0%,#16324F 100%);
+    color:#fff;
+    padding:70px 24px 50px;
+    text-align:center;
+  }
+  header.hero .eyebrow{
+    letter-spacing:3px;
+    font-size:13px;
+    color:var(--skyblue);
+    font-weight:700;
+  }
+  header.hero h1{
+    font-size:44px;
+    margin:14px 0 8px;
+  }
+  header.hero .subtitle{
+    color:#93C5FD;
+    font-size:20px;
+    font-weight:600;
+    margin:0 0 6px;
+  }
+  header.hero .tagline{
+    color:#CBD5E1;
+    font-style:italic;
+    font-size:15px;
+  }
+  .info-strip{
+    max-width:900px;
+    margin:34px auto 0;
+    display:flex;
+    border-top:3px solid var(--blue);
+    border-bottom:3px solid var(--blue);
+  }
+  .info-strip div{
+    flex:1;
+    padding:16px 20px;
+    text-align:left;
+  }
+  .info-strip div:first-child{border-right:1px solid rgba(255,255,255,0.15);}
+  .info-strip .label{
+    font-size:11px;
+    letter-spacing:1.5px;
+    color:#93C5FD;
+    font-weight:700;
+  }
+  .info-strip .value{
+    font-size:17px;
+    font-weight:700;
+    color:#fff;
+    margin-top:2px;
+  }
+
+  /* ---- Layout ---- */
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:40px 22px 100px;
+  }
+
+  /* ---- Sticky nav ---- */
+  nav.toc{
+    background:var(--card);
+    border:1px solid #E2E8F0;
+    border-radius:10px;
+    padding:18px 22px;
+    margin-bottom:40px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.04);
+  }
+  nav.toc h2{
+    font-size:15px;
+    letter-spacing:1px;
+    color:var(--navy);
+    margin:0 0 12px;
+    text-transform:uppercase;
+  }
+  nav.toc ol{
+    columns:2;
+    -webkit-columns:2;
+    padding-left:20px;
+    margin:0;
+    font-size:14.5px;
+  }
+  nav.toc li{margin-bottom:7px;}
+  nav.toc a{text-decoration:none;color:#334155;}
+  nav.toc a:hover{color:var(--blue);}
+
+  /* ---- Sections ---- */
+  section{
+    margin-bottom:44px;
+  }
+  h2.section-title{
+    font-size:27px;
+    color:var(--navy);
+    border-bottom:3px solid var(--blue);
+    padding-bottom:10px;
+    margin:0 0 18px;
+  }
+  h3{
+    font-size:20px;
+    color:var(--blue);
+    margin:28px 0 10px;
+  }
+  p{
+    font-size:16px;
+    margin:0 0 14px;
+    color:#1E293B;
+  }
+  ul.bullets{
+    padding-left:0;
+    list-style:none;
+    margin:0 0 16px;
+  }
+  ul.bullets li{
+    position:relative;
+    padding-left:22px;
+    margin-bottom:8px;
+    font-size:16px;
+  }
+  ul.bullets li::before{
+    content:"●";
+    color:var(--blue);
+    font-size:10px;
+    position:absolute;
+    left:0;
+    top:6px;
+  }
+
+  /* ---- Code blocks ---- */
+  .code-block{
+    border-radius:8px;
+    overflow:hidden;
+    margin:16px 0 22px;
+    border:1px solid #CBD5E1;
+    box-shadow:0 1px 4px rgba(0,0,0,0.05);
+  }
+  .code-block .code-label{
+    background:var(--code-bg);
+    color:var(--skyblue);
+    font-family:Consolas,"Courier New",monospace;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:8px 16px;
+  }
+  .code-block pre{
+    margin:0;
+    background:var(--code-panel);
+    padding:16px 18px;
+    overflow-x:auto;
+    font-family:Consolas,"Courier New",monospace;
+    font-size:14px;
+    color:#0F172A;
+    line-height:1.6;
+  }
+
+  /* ---- Note / Warning boxes ---- */
+  .box{
+    border-radius:6px;
+    padding:16px 20px;
+    margin:16px 0 22px;
+    border:1px solid;
+  }
+  .box.note{
+    background:var(--amber-bg);
+    border-color:var(--amber-border);
+    border-left-width:6px;
+  }
+  .box.warn{
+    background:var(--red-bg);
+    border-color:var(--red-border);
+    border-left-width:6px;
+  }
+  .box .box-title{
+    font-weight:700;
+    margin-bottom:4px;
+    display:block;
+  }
+  .box.note .box-title{color:#92400E;}
+  .box.note p{color:#78350F;margin:0;}
+  .box.warn .box-title{color:#991B1B;}
+  .box.warn p{color:#7F1D1D;margin:0;}
+
+  /* ---- Table ---- */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0 22px;
+    font-size:14.5px;
+  }
+  thead th{
+    background:var(--navy);
+    color:#fff;
+    text-align:left;
+    padding:11px 14px;
+    font-weight:700;
+  }
+  tbody td{
+    padding:10px 14px;
+    border-bottom:1px solid #E2E8F0;
+  }
+  tbody tr:nth-child(even){background:#EFF6FF;}
+
+  /* ---- Footer ---- */
+  footer{
+    text-align:center;
+    padding:34px 20px 50px;
+    color:var(--slate);
+    font-size:13.5px;
+    border-top:1px solid #E2E8F0;
+  }
+
+  /* ---- Back to top ---- */
+  .top-link{
+    display:inline-block;
+    margin-top:8px;
+    font-size:13px;
+    text-decoration:none;
+    color:var(--slate);
+  }
+
+  @media(max-width:640px){
+    header.hero h1{font-size:32px;}
+    .info-strip{flex-direction:column;}
+    .info-strip div:first-child{border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);}
+    nav.toc ol{columns:1;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">PY · BEGINNER TRACK</div>
+  <h1>Python Programming</h1>
+  <div class="subtitle">A Complete Beginner's Guide</div>
+  <div class="tagline">Step-by-Step, Fully Explained From Start to Finish</div>
+  <div class="info-strip">
+    <div>
+      <div class="label">PREPARED FOR</div>
+      <div class="value">Raja Huzaifa Wajid</div>
+    </div>
+    <div>
+      <div class="label">TRACK</div>
+      <div class="value">Foundations for Machine Learning</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc" id="top">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#s1">Introduction to Python</a></li>
+    <li><a href="#s2">Variables and Data Types</a></li>
+    <li><a href="#s3">Operators</a></li>
+    <li><a href="#s4">Input and Output</a></li>
+    <li><a href="#s5">Conditional Statements</a></li>
+    <li><a href="#s6">Loops</a></li>
+    <li><a href="#s7">Strings</a></li>
+    <li><a href="#s8">Lists</a></li>
+    <li><a href="#s9">Tuples and Sets</a></li>
+    <li><a href="#s10">Dictionaries</a></li>
+    <li><a href="#s11">Functions</a></li>
+    <li><a href="#s12">Modules and Libraries</a></li>
+    <li><a href="#s13">Exception Handling</a></li>
+    <li><a href="#s14">File Handling</a></li>
+    <li><a href="#s15">Object-Oriented Programming</a></li>
+    <li><a href="#s16">Practice and Next Steps</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2 class="section-title">1. Introduction to Python</h2>
+  <p>Python is a high-level, general-purpose programming language created by Guido van Rossum and first released in 1991. "High-level" means it is written in a way that is close to human language, so you don't have to worry about the low-level details a computer's hardware deals with (like memory addresses). This makes Python one of the easiest languages for beginners to pick up, while still being powerful enough to run some of the largest software systems in the world.</p>
+  <p>Python is used across many fields: web development (Django, Flask), data science, automation and scripting, software testing, and — most importantly for your goals — Machine Learning and Artificial Intelligence, where it is the dominant language.</p>
+
+  <h3>1.1 Why Learn Python?</h3>
+  <ul class="bullets">
+    <li>Readable syntax: Python code reads almost like plain English, which reduces the learning curve.</li>
+    <li>Free and open source: Anyone can download, use, and contribute to Python at no cost.</li>
+    <li>Huge ecosystem for Machine Learning and AI: libraries such as NumPy, Pandas, Matplotlib, Scikit-learn, TensorFlow, and PyTorch are all Python-based.</li>
+    <li>Massive community: millions of developers worldwide, so help is always available online (Stack Overflow, official docs, forums).</li>
+    <li>Versatile: the same language can build websites, automate tasks, analyze data, and train AI models.</li>
+  </ul>
+
+  <h3>1.2 Installing Python</h3>
+  <p>To start writing Python code, you first need the Python interpreter installed on your computer. The interpreter is the program that reads your Python code and executes it line by line.</p>
+  <ul class="bullets">
+    <li>Go to python.org and download the latest stable version for your operating system.</li>
+    <li>During installation on Windows, make sure to check the box that says "Add Python to PATH" — this lets you run Python from any terminal window.</li>
+    <li>After installation, open your terminal (Command Prompt, PowerShell, or Terminal on Mac/Linux) to confirm it worked.</li>
+  </ul>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre># Check that Python is installed and see its version:
+python --version
+
+# Open the interactive Python interpreter (a live coding console):
+python
+
+# Inside the interpreter you can type code directly, e.g.:
+&gt;&gt;&gt; print("Hello, World!")
+Hello, World!</pre>
+  </div>
+
+  <h3>1.3 Choosing an Editor</h3>
+  <p>While you can write Python in any plain text editor, a proper code editor makes learning much faster because it highlights syntax, points out errors, and helps auto-complete code.</p>
+  <div class="box note">
+    <span class="box-title">💡 Recommended Tools:</span>
+    <p>VS Code is a free, lightweight, and beginner-friendly editor with excellent Python support. Jupyter Notebook is especially popular for Machine Learning because it lets you run code in small, testable chunks called "cells" and see results (including charts) immediately below each cell.</p>
+  </div>
+
+  <h3>1.4 Your First Program</h3>
+  <p>Every programmer's first program traditionally prints "Hello, World!" to the screen. In Python, this takes just one line, which shows how beginner-friendly the language is compared to many others.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>print("Hello, World!")
+
+# Output:
+# Hello, World!</pre>
+  </div>
+  <p>The print() function is a built-in Python function whose job is to display whatever is inside its parentheses on the screen. You will use it constantly, especially while learning, to check what your code is doing.</p>
+</section>
+
+<section id="s2">
+  <h2 class="section-title">2. Variables and Data Types</h2>
+  <p>A variable is simply a named container that holds a value in the computer's memory, so you can refer to that value later using its name instead of retyping it. In Python, you create a variable simply by writing a name, an equals sign (=), and the value you want to store — there is no need to declare the data type in advance, unlike languages such as Java or C++. Python automatically figures out the type based on the value you assign.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>name = "Huzaifa"       # a string (text) value
+age = 21                 # an integer (whole number)
+height = 5.9             # a float (decimal number)
+is_student = True        # a boolean (True or False)
+
+print(name, age, height, is_student)
+# Output: Huzaifa 21 5.9 True</pre>
+  </div>
+
+  <h3>2.1 Rules for Naming Variables</h3>
+  <ul class="bullets">
+    <li>Names can contain letters, digits, and underscores, but cannot start with a digit (e.g. age1 is valid, 1age is not).</li>
+    <li>Names are case-sensitive, meaning Age and age are treated as two completely different variables.</li>
+    <li>Avoid Python's reserved keywords (like print, if, for) as variable names.</li>
+    <li>Use descriptive names — student_name is clearer than a single letter like x.</li>
+  </ul>
+
+  <h3>2.2 The Core Data Types</h3>
+  <p>Every value in Python belongs to a data type, which tells Python what kind of operations are valid on that value (for example, you can do math on numbers but not directly on plain text).</p>
+  <table>
+    <thead><tr><th>Data Type</th><th>Description</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>int</td><td>Whole numbers, positive or negative</td><td>10, -5, 2026</td></tr>
+      <tr><td>float</td><td>Numbers with decimal points</td><td>3.14, 9.5, -0.2</td></tr>
+      <tr><td>str</td><td>Text, written inside quotes</td><td>"Hello", 'Python'</td></tr>
+      <tr><td>bool</td><td>Logical value: True or False</td><td>True, False</td></tr>
+      <tr><td>list</td><td>An ordered, changeable collection of items</td><td>[1, 2, 3]</td></tr>
+      <tr><td>tuple</td><td>An ordered, unchangeable collection of items</td><td>(1, 2, 3)</td></tr>
+      <tr><td>dict</td><td>A collection of key–value pairs</td><td>{"name": "Ali"}</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.3 Checking and Converting Types</h3>
+  <p>Sometimes you need to know a value's type, or convert a value from one type to another — for instance, turning text typed by a user into a number so you can do math with it. Python provides simple built-in functions for this.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>x = 10
+print(type(x))            # &lt;class 'int'&gt;
+
+y = str(x)                 # convert int to string -> '10'
+z = float(x)                # convert int to float -> 10.0
+w = int("25")               # convert string to int -> 25
+
+print(y, z, w)</pre>
+  </div>
+</section>
+
+<section id="s3">
+  <h2 class="section-title">3. Operators</h2>
+  <p>Operators are special symbols that perform operations on values (called operands). Python groups operators into several categories, and understanding each one is essential for writing any logic.</p>
+
+  <h3>3.1 Arithmetic Operators</h3>
+  <p>These perform mathematical calculations, just as you'd expect from ordinary math, with two additions unique to programming: floor division and modulus.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>a = 10
+b = 3
+
+print(a + b)     # Addition        -> 13
+print(a - b)     # Subtraction     -> 7
+print(a * b)     # Multiplication  -> 30
+print(a / b)     # Division        -> 3.333...
+print(a // b)    # Floor Division  -> 3  (rounds down, drops decimals)
+print(a % b)     # Modulus         -> 1  (the remainder after division)
+print(a ** b)    # Exponent/Power  -> 1000  (10 to the power of 3)</pre>
+  </div>
+
+  <h3>3.2 Comparison Operators</h3>
+  <p>These compare two values and always produce a boolean result: True or False. They are the backbone of decision-making in code.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>print(10 &gt; 5)      # True   (greater than)
+print(10 &lt; 5)      # False  (less than)
+print(10 == 10)    # True   (equal to)
+print(10 != 5)     # True   (not equal to)
+print(10 &gt;= 10)    # True   (greater than or equal to)
+print(10 &lt;= 5)     # False  (less than or equal to)</pre>
+  </div>
+
+  <h3>3.3 Logical Operators</h3>
+  <p>Logical operators combine multiple boolean conditions into a single True/False result, letting you build more complex decisions.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>x = True
+y = False
+
+print(x and y)    # False -> both must be True
+print(x or y)     # True  -> at least one must be True
+print(not x)      # False -> reverses the value</pre>
+  </div>
+
+  <h3>3.4 Assignment Operators</h3>
+  <p>Besides the basic = sign, Python offers shorthand operators that update a variable's value in place.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>count = 5
+count += 1     # same as: count = count + 1  -> 6
+count -= 2     # same as: count = count - 2  -> 4
+count *= 3     # same as: count = count * 3  -> 12</pre>
+  </div>
+</section>
+
+<section id="s4">
+  <h2 class="section-title">4. Input and Output</h2>
+  <p>A program is only useful if it can communicate with the user. Python gives you print() to display output and input() to collect what the user types.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>name = input("What is your name? ")
+print("Welcome,", name)
+
+# input() ALWAYS returns text (a string), even if the user types a number,
+# so convert it before doing math with it:
+age = int(input("How old are you? "))
+print("Next year you will be", age + 1)</pre>
+  </div>
+  <div class="box warn">
+    <span class="box-title">⚠ Common Beginner Mistake:</span>
+    <p>Forgetting that input() returns a string will cause errors like trying to add 1 to text. Always wrap it with int() or float() when you expect a number.</p>
+  </div>
+</section>
+
+<section id="s5">
+  <h2 class="section-title">5. Conditional Statements</h2>
+  <p>Conditional statements let your program make decisions and run different code depending on whether a condition is True or False. Python uses if, elif (short for "else if"), and else to build these decisions.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>marks = 85
+
+if marks &gt;= 90:
+    print("Grade: A+")
+elif marks &gt;= 75:
+    print("Grade: A")
+elif marks &gt;= 50:
+    print("Grade: B")
+else:
+    print("Fail")
+
+# Python checks each condition top to bottom and runs the FIRST
+# block whose condition is True, then skips the rest.</pre>
+  </div>
+  <div class="box note">
+    <span class="box-title">💡 Very Important — Indentation:</span>
+    <p>Unlike languages that use curly braces { }, Python uses indentation (spacing, usually 4 spaces) to define which lines belong inside a block. Incorrect indentation will cause an IndentationError, so always be consistent.</p>
+  </div>
+</section>
+
+<section id="s6">
+  <h2 class="section-title">6. Loops</h2>
+  <p>Loops let you repeat a block of code multiple times without rewriting it, which saves effort and avoids mistakes. Python has two main types: for loops and while loops.</p>
+
+  <h3>6.1 The For Loop</h3>
+  <p>A for loop is used when you want to repeat an action a specific number of times, or once for every item in a collection (like a list). The range() function generates a sequence of numbers to loop over.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>for i in range(1, 6):     # generates 1, 2, 3, 4, 5 (stops before 6)
+    print("Number:", i)
+
+fruits = ["apple", "banana", "mango"]
+for fruit in fruits:       # loops once for each item in the list
+    print(fruit)</pre>
+  </div>
+
+  <h3>6.2 The While Loop</h3>
+  <p>A while loop keeps repeating as long as its condition stays True. It is useful when you don't know in advance exactly how many times you need to repeat — the loop stops on its own once the condition becomes False.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>count = 1
+while count &lt;= 5:
+    print("Count:", count)
+    count += 1     # without this line, the loop would run forever!</pre>
+  </div>
+
+  <h3>6.3 Break and Continue</h3>
+  <p>Sometimes you need finer control inside a loop. break immediately exits the loop entirely, while continue skips just the current iteration and moves to the next one.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>for i in range(1, 10):
+    if i == 5:
+        break        # stops the loop completely when i reaches 5
+    if i % 2 == 0:
+        continue     # skips even numbers, doesn't print them
+    print(i)
+
+# Output: 1, 3</pre>
+  </div>
+</section>
+
+<section id="s7">
+  <h2 class="section-title">7. Strings</h2>
+  <p>A string is a sequence of characters — essentially, any piece of text — written inside single or double quotes. Python treats strings as ordered sequences, which means every character has a position (called an index), starting from 0.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>text = "Python Programming"
+
+print(text.upper())              # PYTHON PROGRAMMING
+print(text.lower())              # python programming
+print(text.replace("Python", "Java"))   # Java Programming
+print(text.split())              # ['Python', 'Programming']
+print(len(text))                 # 19 (total number of characters)
+print(text[0])                   # 'P' (first character, index 0)
+print(text[0:6])                 # 'Python' (slicing: characters 0 to 5)</pre>
+  </div>
+  <p>String slicing, shown above with text[0:6], lets you extract a portion of a string by specifying a start index and an end index (the end index itself is not included). This is one of the most frequently used string techniques in Python.</p>
+
+  <h3>7.1 f-Strings (Formatted Strings)</h3>
+  <p>f-strings are a modern and highly readable way to insert variable values directly inside text, by placing an f before the opening quote and wrapping variables in curly braces.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>name = "Huzaifa"
+age = 21
+print(f"My name is {name} and I am {age} years old.")
+# Output: My name is Huzaifa and I am 21 years old.</pre>
+  </div>
+</section>
+
+<section id="s8">
+  <h2 class="section-title">8. Lists</h2>
+  <p>A list is an ordered, changeable (mutable) collection that can hold multiple values of any type in a single variable. Lists are one of the most commonly used data structures in Python because of their flexibility.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>numbers = [10, 20, 30, 40]
+
+numbers.append(50)          # adds 50 to the end -> [10, 20, 30, 40, 50]
+numbers.remove(20)          # removes the value 20 -> [10, 30, 40, 50]
+numbers[0] = 100            # updates the item at index 0 -> [100, 30, 40, 50]
+
+print(numbers)
+print(len(numbers))         # total number of items in the list
+print(numbers[1:3])         # slicing: items at index 1 and 2
+print(sorted(numbers))      # returns a new, sorted list</pre>
+  </div>
+  <p>Because lists are mutable, you can change, add, or remove their contents after creation — this is different from strings and tuples, which cannot be changed once created.</p>
+</section>
+
+<section id="s9">
+  <h2 class="section-title">9. Tuples and Sets</h2>
+  <h3>9.1 Tuples</h3>
+  <p>A tuple is very similar to a list — it is also an ordered collection — but once created, it is immutable, meaning its contents cannot be changed. Tuples are typically used for data that should stay constant, such as fixed coordinates.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>coordinates = (10, 20)
+print(coordinates[0])   # 10
+
+# coordinates[0] = 99   # This would cause an error - tuples can't be changed</pre>
+  </div>
+
+  <h3>9.2 Sets</h3>
+  <p>A set is an unordered collection that automatically removes duplicate values, making it useful whenever you need to guarantee that every item in a collection is unique.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>colors = {"red", "blue", "red", "green"}
+print(colors)   # {'red', 'blue', 'green'}  (duplicate 'red' is removed automatically)</pre>
+  </div>
+</section>
+
+<section id="s10">
+  <h2 class="section-title">10. Dictionaries</h2>
+  <p>A dictionary stores data as key–value pairs, similar to a real dictionary where a word (the key) maps to its definition (the value). Dictionaries are extremely useful for representing structured, real-world information.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>student = {
+    "name": "Huzaifa",
+    "age": 21,
+    "course": "Machine Learning"
+}
+
+print(student["name"])          # access a value using its key -> Huzaifa
+student["age"] = 22              # update an existing key's value
+student["city"] = "Hazro"        # add a brand-new key-value pair
+
+for key, value in student.items():   # loop through every key and value
+    print(key, ":", value)</pre>
+  </div>
+</section>
+
+<section id="s11">
+  <h2 class="section-title">11. Functions</h2>
+  <p>A function is a reusable, named block of code designed to perform a specific task. Functions let you write logic once and reuse it as many times as needed, which keeps code organized and avoids repetition.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>def greet(name):          # 'def' defines a new function named greet
+    return "Hello, " + name    # 'return' sends a value back to the caller
+
+print(greet("Huzaifa"))   # calling the function with an argument
+# Output: Hello, Huzaifa
+
+def add_numbers(a, b=10):    # b=10 is a default value, used if none is given
+    return a + b
+
+print(add_numbers(5))        # 15  (uses the default b=10)
+print(add_numbers(5, 20))    # 25  (overrides the default)</pre>
+  </div>
+  <p>The parameters inside the parentheses (name, a, b) act as placeholders for the values, called arguments, that you pass in when you actually call the function. This separation lets the same function work with many different inputs.</p>
+</section>
+
+<section id="s12">
+  <h2 class="section-title">12. Modules and Libraries</h2>
+  <p>A module is simply a file containing pre-written Python code — functions, variables, and more — that you can bring into your own program using the import keyword, instead of writing everything from scratch. A library is a larger collection of related modules bundled together.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>import math
+print(math.sqrt(16))     # 4.0  (square root, from the math module)
+
+import random
+print(random.randint(1, 10))    # a random whole number between 1 and 10</pre>
+  </div>
+  <div class="box note">
+    <span class="box-title">💡 Important for Machine Learning:</span>
+    <p>As you move forward into Machine Learning, you will rely heavily on external libraries such as NumPy (numerical computations), Pandas (data handling and analysis), Matplotlib (data visualization), and Scikit-learn (ready-made ML algorithms). All of these are used through this exact same import mechanism, so mastering it now will pay off directly.</p>
+  </div>
+</section>
+
+<section id="s13">
+  <h2 class="section-title">13. Exception Handling</h2>
+  <p>Even correct-looking code can fail at runtime — for example, if a user types text where a number was expected. Exception handling, using try and except, lets your program catch these errors gracefully instead of crashing.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+    print(result)
+except ZeroDivisionError:
+    print("You cannot divide by zero!")
+except ValueError:
+    print("Please enter a valid number!")</pre>
+  </div>
+  <p>Python first attempts to run the code inside the try block. If an error occurs, it immediately jumps to the matching except block instead of stopping the entire program, which is essential for building reliable, user-friendly software.</p>
+</section>
+
+<section id="s14">
+  <h2 class="section-title">14. File Handling</h2>
+  <p>Programs frequently need to save data permanently or read data that already exists on disk. Python's built-in open() function, combined with the with statement, provides a safe and simple way to work with files.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre># Writing to a file
+with open("data.txt", "w") as file:   # 'w' mode = write (overwrites existing content)
+    file.write("Hello Python!")
+
+# Reading from a file
+with open("data.txt", "r") as file:   # 'r' mode = read
+    content = file.read()
+    print(content)</pre>
+  </div>
+  <p>Using with open(...) as file: automatically closes the file for you once the block finishes, even if an error occurs — this prevents data corruption and is considered the standard, safe way to handle files in Python.</p>
+</section>
+
+<section id="s15">
+  <h2 class="section-title">15. Object-Oriented Programming (Basics)</h2>
+  <p>Object-Oriented Programming (OOP) is a programming style that models real-world things as "objects," each combining data (attributes) and behavior (methods) together. A class is a blueprint for creating objects, and __init__ is a special method that runs automatically whenever a new object is created, used to set up its initial data.</p>
+  <div class="code-block">
+    <div class="code-label">PYTHON</div>
+    <pre>class Student:
+    def __init__(self, name, age):    # constructor: runs when a Student is created
+        self.name = name                # 'self' refers to this specific object
+        self.age = age
+
+    def introduce(self):                # a method: behavior belonging to the object
+        print(f"My name is {self.name} and I am {self.age} years old.")
+
+s1 = Student("Huzaifa", 21)      # creating an 'object' (an instance of the class)
+s1.introduce()
+# Output: My name is Huzaifa and I am 21 years old.</pre>
+  </div>
+  <p>OOP becomes especially useful as programs grow larger, because it groups related data and functionality together, making code easier to organize, reuse, and maintain — a pattern you will also encounter inside Machine Learning libraries like Scikit-learn.</p>
+</section>
+
+<section id="s16">
+  <h2 class="section-title">16. Practice and Next Steps</h2>
+  <p>Reading notes builds understanding, but only writing code builds real skill. Use the following roadmap to turn what you've learned into lasting ability.</p>
+  <ul class="bullets">
+    <li>After every topic, write your own small program using it — don't just read the examples, retype and modify them.</li>
+    <li>Aim for 30–45 minutes of consistent daily practice rather than long, irregular sessions.</li>
+    <li>Build small beginner projects to combine multiple concepts: a calculator, a to-do list, or a number-guessing game.</li>
+    <li>Once these fundamentals feel solid, move on to NumPy and Pandas — these two libraries form the practical foundation of Machine Learning work.</li>
+    <li>Don't fear errors — Python's error messages are usually clear and descriptive; read them carefully, as they are one of the fastest ways to learn.</li>
+  </ul>
+  <div class="box note">
+    <span class="box-title">💡 Your Next Step:</span>
+    <p>Once these basics are comfortable, begin learning NumPy (for fast numerical computation with arrays) and Pandas (for loading, cleaning, and analyzing data). These two libraries are the true starting point of your Machine Learning journey.</p>
+  </div>
+</section>
+
+<div style="text-align:center;">
+  <a class="top-link" href="#top">↑ Back to top</a>
+</div>
+
+</div>
+
+<footer>
+  Python Programming — A Complete Beginner's Guide · Prepared for Raja Huzaifa Wajid
+</footer>
+
+</body>
+</html>
